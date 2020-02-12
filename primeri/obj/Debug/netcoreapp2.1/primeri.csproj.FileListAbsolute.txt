@@ -1,0 +1,11 @@
+D:\c#w\primeri\primeri\bin\Debug\netcoreapp2.1\primeri.deps.json
+D:\c#w\primeri\primeri\bin\Debug\netcoreapp2.1\primeri.runtimeconfig.json
+D:\c#w\primeri\primeri\bin\Debug\netcoreapp2.1\primeri.runtimeconfig.dev.json
+D:\c#w\primeri\primeri\bin\Debug\netcoreapp2.1\primeri.dll
+D:\c#w\primeri\primeri\bin\Debug\netcoreapp2.1\primeri.pdb
+D:\c#w\primeri\primeri\obj\Debug\netcoreapp2.1\primeri.csprojAssemblyReference.cache
+D:\c#w\primeri\primeri\obj\Debug\netcoreapp2.1\primeri.csproj.CoreCompileInputs.cache
+D:\c#w\primeri\primeri\obj\Debug\netcoreapp2.1\primeri.AssemblyInfoInputs.cache
+D:\c#w\primeri\primeri\obj\Debug\netcoreapp2.1\primeri.AssemblyInfo.cs
+D:\c#w\primeri\primeri\obj\Debug\netcoreapp2.1\primeri.dll
+D:\c#w\primeri\primeri\obj\Debug\netcoreapp2.1\primeri.pdb
