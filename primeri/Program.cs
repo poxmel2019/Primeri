@@ -9,13 +9,13 @@ namespace primeri
         {
             string userAnswer;
             string[] exercises = { "1 + 1", "1 - 1", "1 * 1", "1 / 1" };
-            string[] rightAnswers = { "2", "0", "1", "1" };
             int[] rightAnswersInt = { 2, 0, 1, 1 };
-            string[] userAnswers = new string[4];
-            string[] isRight = new string[4];
+            string[] userAnswers = new string[exercises.Length];
+            string[] isRight = new string[exercises.Length];
             int count = 0;
             int handledAnswer = 0;
             Dictionary<string, int> exercises2 = new Dictionary<string, int>();
+            
 
             for (int i = 0; i < exercises.Length; i++)
             {
@@ -32,10 +32,8 @@ namespace primeri
                             isRight[i] = "Correct";
                             count++;
                         }
-                        else
-                        {
-                            isRight[i] = "Incorrect";
-                        }
+                        else isRight[i] = "Incorrect";
+                        
                         break;
                     }
                     catch (FormatException)
@@ -49,6 +47,7 @@ namespace primeri
             Console.WriteLine("Wrong answers: " + (exercises.Length - count));
 
             string showWork;
+            string someResult = "";
             while (true)
             {
                 Console.WriteLine("Do you want to see your work?");
@@ -57,7 +56,9 @@ namespace primeri
                 {
                     for (int i = 0; i < exercises.Length; i++)
                     {
-                        Console.WriteLine($"{i + 1}) {exercises[i]} = {userAnswers[i]} {isRight[i]}.  Right answer:  {rightAnswers[i]}");
+                        if (isRight[i] == "Incorrect") someResult = $"Right answer: {rightAnswersInt[i]}";
+                        else someResult = "";
+                        Console.WriteLine($"{i + 1}) {exercises[i]} = {userAnswers[i]} {isRight[i]}. {someResult}");
 
 
                     }
