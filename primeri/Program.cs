@@ -15,17 +15,21 @@ namespace primeri
             int count = 0;
             int handledAnswer = 0;
             bool enabled = true;
+            int counter = 0;
+            int game = 0;
+
             Dictionary<string, int> quan = new Dictionary<string, int>();
 
             for(int i = 0; i < exercises.Length; i++)
             {
                 quan.Add(exercises[i], rightAnswersInt[i]);  
             }
-            Array.Sort(exercises);
-            ShowCol(quan);
+            //Array.Sort(exercises);
+            //ShowCol(quan);
             
             while (enabled)
             {
+                game++;
                 for (int i = 0; i < exercises.Length; i++)
                 {
                     while (true)
@@ -53,6 +57,8 @@ namespace primeri
                         }
                     }
                 }
+                if (count == rightAnswersInt.Length) counter++;
+
                 Console.WriteLine("Right answers: " + count);
                 Console.WriteLine("Wrong answers: " + (exercises.Length - count));
 
@@ -84,6 +90,8 @@ namespace primeri
                     else if (again == "n") 
                         {
                         enabled = false;
+                        Console.WriteLine($"Played games: {game}\n" +
+                            $"Win: {counter} \nLoses: {game - counter}");
                         Console.WriteLine("Buy!");
                         break;
                         }
