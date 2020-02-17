@@ -12,7 +12,7 @@ namespace primeri
             int[] rightAnswersInt = { 2, 0, 1, 1 };
             string[] userAnswers = new string[exercises.Length];
             string[] isRight = new string[exercises.Length];
-            int count = 0;
+            
             int handledAnswer = 0;
             bool enabled = true;
             int counter = 0;
@@ -29,6 +29,7 @@ namespace primeri
             
             while (enabled)
             {
+                int count = 0;
                 game++;
                 for (int i = 0; i < exercises.Length; i++)
                 {
