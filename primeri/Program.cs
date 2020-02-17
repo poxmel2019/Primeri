@@ -24,7 +24,7 @@ namespace primeri
             {
                 quan.Add(exercises[i], rightAnswersInt[i]);  
             }
-            //Array.Sort(exercises);
+            Array.Sort(exercises);
             //ShowCol(quan);
             
             while (enabled)
@@ -41,13 +41,19 @@ namespace primeri
                             handledAnswer = Convert.ToInt32(userAnswer);
                             userAnswers[i] = userAnswer;
                             // correctness of user answer
-                            if (handledAnswer == rightAnswersInt[i])
+                            foreach (KeyValuePair<string, int> el in quan)
                             {
-                                isRight[i] = "Correct";
-                                count++;
+                                if (exercises[i] == el.Key)
+                                {
+                                    if (handledAnswer == el.Value)
+                                    {
+                                        isRight[i] = "Correct";
+                                        count++;
+                                        break;
+                                    }
+                                    else isRight[i] = "Incorrect";
+                                }
                             }
-                            else isRight[i] = "Incorrect";
-
                             break;
                         }
                         catch (FormatException)
@@ -60,6 +66,7 @@ namespace primeri
                 if (count == rightAnswersInt.Length) counter++;
 
                 Console.WriteLine("Right answers: " + count);
+
                 Console.WriteLine("Wrong answers: " + (exercises.Length - count));
 
                 string showWork;
