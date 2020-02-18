@@ -7,7 +7,7 @@ namespace primeri
     {
         static void Main(string[] args)
         {
-            string userAnswer;
+            string userAnswer = string.Empty;
             string[] exercises = { "1 + 1", "1 - 1", "1 * 1", "1 / 1" };
             int[] rightAnswersInt = { 2, 0, 1, 1 };
             string[] userAnswers = new string[exercises.Length];
@@ -28,7 +28,7 @@ namespace primeri
             //ShowCol(quan);
             
             while (enabled)
-            {
+            { 
                 int count = 0;
                 game++;
                 for (int i = 0; i < exercises.Length; i++)
@@ -39,13 +39,16 @@ namespace primeri
                         userAnswer = Console.ReadLine();
                         try
                         {
+                            
                             handledAnswer = Convert.ToInt32(userAnswer);
                             userAnswers[i] = userAnswer;
                             // correctness of user answer
+
                             foreach (KeyValuePair<string, int> el in quan)
                             {
                                 if (exercises[i] == el.Key)
                                 {
+                                    
                                     if (handledAnswer == el.Value)
                                     {
                                         isRight[i] = "Correct";
@@ -57,10 +60,20 @@ namespace primeri
                             }
                             break;
                         }
+                        catch(OverflowException exOverFlow)
+                        {
+                            Console.WriteLine(exOverFlow.Message);
+                        }
                         catch (FormatException)
                         {
-                            if (userAnswer == "") Console.WriteLine("You entered nothing");
-                            else Console.WriteLine("Asnwer should be number");
+                            if (string.IsNullOrEmpty(userAnswer) || string.IsNullOrWhiteSpace(userAnswer))
+                            {
+                                Console.WriteLine("You entered nothing");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Asnwer should be number");
+                            }
                         }
                     }
                 }
@@ -77,7 +90,8 @@ namespace primeri
                 {
                     Console.WriteLine("Do you want to see your work?");
                     showWork = Console.ReadLine();
-                    if (showWork == "y")
+                    if (string.Equals("y", showWork, StringComparison.CurrentCultureIgnoreCase))
+                    
                     {
                         for (int i = 0; i < exercises.Length; i++)
                         {
@@ -87,22 +101,26 @@ namespace primeri
                         }
                         break;
                     }
-                    else if (showWork == "n") break;
+
+                    else if (string.Equals("n", showWork, StringComparison.CurrentCultureIgnoreCase)) break;
                 }
 
                 while (true)
                 {
                     Console.WriteLine("Again?");
                     string again = Console.ReadLine();
-                    if (again == "y") break;
-                    else if (again == "n") 
-                        {
+                    if (string.Equals("y", again, StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        break;
+                    }
+                    else if (string.Equals("n", again, StringComparison.CurrentCultureIgnoreCase))
+                    {
                         enabled = false;
                         Console.WriteLine($"Played games: {game}\n" +
                             $"Win: {counter} \nLoses: {game - counter}");
                         Console.WriteLine("Buy!");
                         break;
-                        }
+                    }
                 }
 
 
