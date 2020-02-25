@@ -13,7 +13,7 @@ namespace primeri
             string[] userAnswers = new string[exercises.Length];
             string[] isRight = new string[exercises.Length];
             
-            int handledAnswer = 0;
+            double handledAnswer = 0;
             bool enabled = true;
             int counter = 0;
             int game = 0;
@@ -40,7 +40,7 @@ namespace primeri
                         try
                         {
                             
-                            handledAnswer = Convert.ToInt32(userAnswer);
+                            handledAnswer = Convert.ToDouble(userAnswer);
                             userAnswers[i] = userAnswer;
                             // correctness of user answer
 
@@ -91,7 +91,7 @@ namespace primeri
                     Console.WriteLine("Do you want to see your work?");
                     showWork = Console.ReadLine();
                     if (string.Equals("y", showWork, StringComparison.CurrentCultureIgnoreCase))
-                    
+
                     {
                         for (int i = 0; i < exercises.Length; i++)
                         {
@@ -102,7 +102,10 @@ namespace primeri
                         break;
                     }
 
-                    else if (string.Equals("n", showWork, StringComparison.CurrentCultureIgnoreCase)) break;
+                    else if (string.Equals("n", showWork, StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        break;
+                    }
                 }
 
                 while (true)
