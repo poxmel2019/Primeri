@@ -7,145 +7,125 @@ namespace primeri
     {
         static void Main(string[] args)
         {
-            string userAnswer = string.Empty;
-            string[] exercises = { "1 + 1", "1 - 1", "1 * 1", "1 / 1" };
-            int[] rightAnswersInt = { 2, 0, 1, 1 };
-            string[] userAnswers = new string[exercises.Length];
-            string[] isRight = new string[exercises.Length];
-            
-            double handledAnswer = 0;
-            bool enabled = true;
-            int counter = 0;
-            int game = 0;
+            List<string> questions = new List<string> { "1 + 1", "1 - 1", "1 * 1", "1 / 1" };
+            List<int> answers = new List<int> { 2, 0, 1, 1 };
+            List<string> signs = new List<string>();
 
-            Dictionary<string, int> quan = new Dictionary<string, int>();
+            Dictionary<string, int> questions_answers = new Dictionary<string, int>();
+            Dictionary<string, int> userAnswersDict = new Dictionary<string, int>();
+            int[] userAnswers = new int[4];
 
-            for(int i = 0; i < exercises.Length; i++)
+            for (int i = 0; i < questions.Count; i++)
             {
-                quan.Add(exercises[i], rightAnswersInt[i]);  
+                questions_answers[questions[i]] = answers[i];
             }
-            Array.Sort(exercises);
-            //ShowCol(quan);
-            
-            while (enabled)
-            { 
-                int count = 0;
-                game++;
-                for (int i = 0; i < exercises.Length; i++)
+
+            int j = 0;
+            int user_answer;
+
+            while (j < questions.Count)
+            {
+                Console.WriteLine(questions[j] + " =\n");
+                try
                 {
-                    while (true)
-                    {
-                        Console.WriteLine($"{i + 1}) " + exercises[i] + " = ");
-                        userAnswer = Console.ReadLine();
-                        try
-                        {
-                            
-                            handledAnswer = Convert.ToDouble(userAnswer);
-                            userAnswers[i] = userAnswer;
-                            // correctness of user answer
-
-                            foreach (KeyValuePair<string, int> el in quan)
-                            {
-                                if (exercises[i] == el.Key)
-                                {
-                                    
-                                    if (handledAnswer == el.Value)
-                                    {
-                                        isRight[i] = "Correct";
-                                        count++;
-                                        break;
-                                    }
-                                    else isRight[i] = "Incorrect";
-                                }
-                            }
-                            break;
-                        }
-                        catch(OverflowException exOverFlow)
-                        {
-                            Console.WriteLine(exOverFlow.Message);
-                        }
-                        catch (FormatException)
-                        {
-                            if (string.IsNullOrEmpty(userAnswer) || string.IsNullOrWhiteSpace(userAnswer))
-                            {
-                                Console.WriteLine("You entered nothing");
-                            }
-                            else
-                            {
-                                Console.WriteLine("Asnwer should be number");
-                            }
-                        }
-                    }
+                    user_answer = Convert.ToInt32(Console.ReadLine());
+                    userAnswersDict[questions[j]] = user_answer;
+                    userAnswers[j] = user_answer;
+                    j++;
                 }
-                if (count == rightAnswersInt.Length) counter++;
-
-                Console.WriteLine("Right answers: " + count);
-
-                Console.WriteLine("Wrong answers: " + (exercises.Length - count));
-
-                string showWork;
-                string someResult = "";
-
-                while (true)
+                catch (FormatException)
                 {
-                    Console.WriteLine("Do you want to see your work?");
-                    showWork = Console.ReadLine();
-                    if (string.Equals("y", showWork, StringComparison.CurrentCultureIgnoreCase))
 
-                    {
-                        for (int i = 0; i < exercises.Length; i++)
-                        {
-                            if (isRight[i] == "Incorrect") someResult = $"Right answer: {rightAnswersInt[i]}";
-                            else someResult = "";
-                            Console.WriteLine($"{i + 1}) {exercises[i]} = {userAnswers[i]} {isRight[i]}. {someResult}");
-                        }
-                        break;
-                    }
-
-                    else if (string.Equals("n", showWork, StringComparison.CurrentCultureIgnoreCase))
-                    {
-                        break;
-                    }
+                    Console.WriteLine("Enter number!");
                 }
-
-                while (true)
-                {
-                    Console.WriteLine("Again?");
-                    string again = Console.ReadLine();
-                    if (string.Equals("y", again, StringComparison.CurrentCultureIgnoreCase))
-                    {
-                        break;
-                    }
-                    else if (string.Equals("n", again, StringComparison.CurrentCultureIgnoreCase))
-                    {
-                        enabled = false;
-                        Console.WriteLine($"Played games: {game}\n" +
-                            $"Win: {counter} \nLoses: {game - counter}");
-                        Console.WriteLine("Buy!");
-                        break;
-                    }
-                }
-
 
             }
 
-            Console.ReadKey();
 
+
+            int count = 0;
+            foreach (KeyValuePair<string, int> el in userAnswersDict)
+            {
+                foreach (KeyValuePair<string, int> xl in questions_answers)
+                {
+                    if (el.Key == xl.Key)
+                    {
+                        if (el.Value == xl.Value)
+                        {
+                            count++;
+                            signs.Add("+");
+                        }
+                        else
+                        {
+                            signs.Add("-");
+                        }
+                    }
+                }
+            }
+
+
+
+
+            Console.WriteLine($"Quantity of right answers: {count}");
+
+            switch (count)
+            {
+                case 1:
+                    Console.WriteLine("Your mark is 3");
+                    break;
+                case 2:
+                case 3:
+                    Console.WriteLine("Your mark is 4");
+                    break;
+                case 4:
+                    Console.WriteLine("Your mark is 5");
+                    break;
+                default:
+                    Console.WriteLine("Your mark is 2");
+                    break;
+            }
+
+            while (true)
+            {
+                Console.WriteLine("Do you want to see your work?");
+                string seeWork = Console.ReadLine();
+                if (seeWork == "y" || seeWork == "yes")
+                {
+                    for (int i = 0; i < 4; i++)
+                    {
+                        Console.WriteLine($"{i + 1}) {questions[i]} = {userAnswers[i]} {signs[i]} {answers[i]}");
+                    }
+                    break;
+                }
+                else if (seeWork == "n" || seeWork == "no")
+                {
+                    Console.WriteLine("Buy!");
+                    break;
+                }
+            }
+
+            Console.ReadLine();
         }
-        static void ShowCol(string[] array)
+        static void ShowData(List<string> array)
         {
             foreach (string el in array)
             {
                 Console.WriteLine(el);
             }
         }
-        static void ShowCol(Dictionary<string,int> array)
+        static void ShowData(List<int> array)
         {
-            foreach (KeyValuePair<string,int> el in array)
+            foreach (int el in array)
             {
-                Console.WriteLine(el.Key + " " + el.Value);
+                Console.WriteLine(el);
+            }
+        }
+        static void ShowData(Dictionary<string, int> array)
+        {
+            foreach (KeyValuePair<string, int> el in array)
+            {
+                Console.WriteLine(el.Key + " - " + el.Value);
             }
         }
     }
 }
-
