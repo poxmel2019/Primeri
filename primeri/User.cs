@@ -12,7 +12,7 @@ namespace primeri
 
         int experience = 1;
         int Experience { get; }
-
+        
         int mark;
         int Mark { get; }
         */
@@ -71,8 +71,8 @@ namespace primeri
 
             }
         }
-        public void ShowTheResult(Teacher teacher) {
-            Console.WriteLine();
+        public void SeeTheResult(Test test, Teacher teacher) {
+            ShowWork(test, teacher);
             Console.WriteLine($"All: {UserAnswers.Length}\n"+
                 $"Right: {teacher.Count}\nWrong: {UserAnswers.Length-teacher.Count}\n" + 
                 $"Mark is {teacher.Mark}"
@@ -90,6 +90,21 @@ namespace primeri
             foreach (KeyValuePair<string, int> elem in QuestionsAnswers)
             {
                 Console.WriteLine(elem);
+            }
+        }
+        public void ShowWork(Test test, Teacher teacher)
+        {
+            for(int i = 0; i < test.Questions.Length; i++)
+            {
+                if (test.Answers[i] == UserAnswers[i])
+                {
+                    Console.WriteLine($"{i + 1}) {test.Questions[i]} = {UserAnswers[i]} {teacher.Signs[i]}");
+                }
+                else
+                {
+                    Console.WriteLine($"{i + 1}) {test.Questions[i]} = {UserAnswers[i]} {teacher.Signs[i]} {test.Answers[i]}");
+                }
+                
             }
         }
 

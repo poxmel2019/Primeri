@@ -12,6 +12,14 @@ namespace primeri
         public int Count { get { return count; } }
         int Counter { get; }
         List<string> signs = new List<string>();
+        public List<string> Signs { get { return signs; } }
+        public void getSigns()
+        {
+            foreach(string el in signs)
+            {
+                Console.Write(el);
+            }
+        }
         public void CheckTheTest(User user,Test test)
         {
             

@@ -12,7 +12,8 @@ namespace primeri
             User user = new User();
             user.TakeTheTest(test);
             teacher.CheckTheTest(user, test);
-            user.ShowTheResult(teacher);
+            user.SeeTheResult(test,teacher);
+
             Console.ReadLine();
         }
 

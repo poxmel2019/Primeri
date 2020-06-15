@@ -9,7 +9,7 @@ namespace primeri
         int[] answers = { 2, 0, 1, 1 };
         string[] questions = { "1 + 1", "1 - 1", "1 * 1", "1 / 1" };
         Dictionary<string, int> questionsAnswers = new Dictionary<string, int>();
-        List<string> signs = new List<string>();
+        
 
         public Test()
         {
