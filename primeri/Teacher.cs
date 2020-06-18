@@ -4,10 +4,10 @@ using System.Text;
 
 namespace primeri
 {
-    public class Teacher
+    public class Teacher : PersonInEdu
     {
         int count;
-        int mark;
+        
         public int Mark { get { return mark; } }
         public int Count { get { return count; } }
         int Counter { get; }

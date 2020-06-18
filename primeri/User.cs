@@ -4,19 +4,9 @@ using System.Text;
 
 namespace primeri
 {
-    public class User
+    public class User: PersonInEdu
     {
-        /*
-        bool hasKnowledgeInMath;
-        bool HasKnowledgeInMath { get; }
-
-        int experience = 1;
-        int Experience { get; }
         
-        int mark;
-        int Mark { get; }
-        */
-
         Dictionary<string, int> userAnswersDict = new Dictionary<string, int>();
         int[] userAnswers = new int[4];
 
