@@ -10,6 +10,11 @@ namespace primeri
         Dictionary<string, int> userAnswersDict = new Dictionary<string, int>();
         int[] userAnswers = new int[4];
 
+        public string Name { get { return name; } set { name = value; } }
+
+
+        public int Mark { get { return mark; } set { mark = value; } }
+
         public Dictionary<string, int> UserAnswersDict
         {
             get
@@ -38,6 +43,9 @@ namespace primeri
 
         public void TakeTheTest(Test test)
         {
+
+            Console.WriteLine("Name: ");
+            name = Console.ReadLine();
             int j = 0;
             int user_answer;
             while (j < test.Questions.Length)
@@ -62,10 +70,12 @@ namespace primeri
             }
         }
         public void SeeTheResult(Test test, Teacher teacher) {
+            
+
             ShowWork(test, teacher);
             Console.WriteLine($"All: {UserAnswers.Length}\n"+
                 $"Right: {teacher.Count}\nWrong: {UserAnswers.Length-teacher.Count}\n" + 
-                $"Mark is {teacher.Mark}"
+                $"Mark is {Mark}"
                 ); }
 
         public void Show(int[] array)

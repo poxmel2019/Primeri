@@ -7,10 +7,18 @@ namespace primeri
     public class Teacher : PersonInEdu
     {
         int count;
-        
-        public int Mark { get { return mark; } }
+
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
+
+        public int Mark { get { return mark; }  }
+
         public int Count { get { return count; } }
-        int Counter { get; }
+       
+        
         List<string> signs = new List<string>();
         public List<string> Signs { get { return signs; } }
         public void getSigns()
@@ -42,9 +50,10 @@ namespace primeri
                 }
             }
 
-            PutMark(count);
+            PutMark(count,user);
+            
         }
-        public void PutMark(int count)
+        public void PutMark(int count, User user)
         {
             switch (count)
             {
@@ -62,6 +71,7 @@ namespace primeri
                     mark = 2;
                     break;
             }
+            user.Mark = mark;
 
             
 

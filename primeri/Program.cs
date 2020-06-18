@@ -10,9 +10,17 @@ namespace primeri
             Teacher teacher = new Teacher();
             Test test = new Test();
             User user = new User();
+            
             user.TakeTheTest(test);
             teacher.CheckTheTest(user, test);
             user.SeeTheResult(test,teacher);
+
+            UsersStatics us = new UsersStatics(user);
+            Console.WriteLine("ID | Name | Mark");
+            Console.WriteLine($"{us.Id} | {us.Name} | {us.Mark} ");
+           
+           
+            
 
             Console.ReadLine();
         }
