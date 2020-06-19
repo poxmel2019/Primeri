@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace primeri
 {
@@ -15,12 +16,22 @@ namespace primeri
             teacher.CheckTheTest(user, test);
             user.SeeTheResult(test,teacher);
 
-            UsersStatics us = new UsersStatics(user);
-            Console.WriteLine("ID | Name | Mark");
-            Console.WriteLine($"{us.Id} | {us.Name} | {us.Mark} ");
-           
-           
-            
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                UsersStatics us = new UsersStatics { Name = user.Name, Mark = user.Mark};
+
+                db.Users.Add(us);
+
+                db.SaveChanges();
+
+                Console.WriteLine("Objects are successffully saved!");
+
+                var uss = db.Users.ToList();
+                foreach (UsersStatics u in uss)
+                {
+                    Console.WriteLine($"{u.Id} | {u.Name} | {u.Mark}");
+                }
+            }
 
             Console.ReadLine();
         }
